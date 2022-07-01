@@ -87,4 +87,65 @@ if (modelName == "Product")
             Console.WriteLine("Nenhum produto cadastrado");
         }
     }
-}
+
+      if (modelAction == "PriceBetween")
+    {
+
+        double initialPrice = Convert.ToDouble(args[2]);
+        double endPrice = Convert.ToDouble(args[3]);
+
+        if (productRepository.GetAllWithPriceBetween(initialPrice, endPrice).Any())
+        {
+
+            foreach (var product in productRepository.GetAllWithPriceBetween(initialPrice, endPrice))
+            {
+                Console.WriteLine("{0}, {1}, {2}, {3}", product.Id, product.Name, product.Price, product.Active);
+            }
+        }
+      else
+            {
+                Console.WriteLine($"Nenhum produto encontrado no intervalo de preço R$ {initialPrice} e R$ {endPrice}.");
+            }
+        }
+
+
+    if (modelAction == "PriceHigherThan")
+    {
+
+        double price = Convert.ToDouble(args[2]);
+        
+
+        if (productRepository.GetAllWithPriceHigherThan(price).Any())
+        {
+
+            foreach (var product in productRepository.GetAllWithPriceHigherThan(price))
+            {
+                Console.WriteLine("{0}, {1}, {2}, {3}", product.Id, product.Name, product.Price, product.Active);
+            }
+        }
+      else
+            {
+                Console.WriteLine($"Nenhum produto encontrado com preço maior que R$ {price}.");
+            }
+        }
+
+            if (modelAction == "PriceLowerThan")
+    {
+
+        double price = Convert.ToDouble(args[2]);
+        
+
+        if (productRepository.GetAllWithPriceLowerThan(price).Any())
+        {
+
+            foreach (var product in productRepository.GetAllWithPriceLowerThan(price))
+            {
+                Console.WriteLine("{0}, {1}, {2}, {3}", product.Id, product.Name, product.Price, product.Active);
+            }
+        }
+      else
+            {
+                Console.WriteLine($"Nenhum produto encontrado com preço menor que R$ {price}.");
+            }
+        }
+    }

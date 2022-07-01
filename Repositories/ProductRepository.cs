@@ -55,6 +55,34 @@ class ProductRepository
         return Products.ToList();
     }
 
+      public List<Product> GetAllWithPriceBetween(double initialPrice, double endPrice) 
+    {
+        using var connection = new SqliteConnection(databaseConfig.ConnectionString);
+        connection.Open();
+
+        var products = connection.Query<Product>("SELECT * FROM Products WHERE price BETWEEN @InitialPrice AND @EndPrice", new {InitialPrice = initialPrice, EndPrice = endPrice});
+
+        return products.ToList();
+    }
+
+     public List<Product> GetAllWithPriceHigherThan(double price) {
+         using var connection = new SqliteConnection(databaseConfig.ConnectionString);
+         connection.Open();
+
+        var products = connection.Query<Product>("SELECT * FROM Products WHERE price  > @Price", new {Price = price});
+
+        return products.ToList();
+    }
+
+     public List<Product> GetAllWithPriceLowerThan(double price) {
+         using var connection = new SqliteConnection(databaseConfig.ConnectionString);
+         connection.Open();
+
+        var products = connection.Query<Product>("SELECT * FROM Products WHERE price  < @Price", new {Price = price});
+
+        return products.ToList();
+    }
+
     public bool ExistsById(int id)
     {
         using var connection = new SqliteConnection(databaseConfig.ConnectionString);

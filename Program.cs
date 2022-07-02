@@ -41,10 +41,10 @@ if (modelName == "Product")
         if (productRepository.ExistsById(id))
         {
             productRepository.Delete(id);
-            Console.WriteLine($"Produto {id} removido com sucesso");
+            Console.WriteLine($"Produto {id} removido com sucesso.");
         }
         else
-            Console.WriteLine($"Produto {id} não encontrado");
+            Console.WriteLine($"Produto {id} não encontrado.");
     }
 
     if (modelAction == "Enable")
@@ -108,12 +108,10 @@ if (modelName == "Product")
         }
     }
 
-
     if (modelAction == "PriceHigherThan")
     {
 
         double price = Convert.ToDouble(args[2]);
-
 
         if (productRepository.GetAllWithPriceHigherThan(price).Any())
         {

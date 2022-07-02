@@ -15,5 +15,4 @@ class Product
         Price = price;
         Active = active;
     }
-
 }

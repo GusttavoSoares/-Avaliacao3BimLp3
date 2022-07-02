@@ -90,12 +90,10 @@ class ProductRepository
         using var connection = new SqliteConnection(databaseConfig.ConnectionString);
         connection.Open();
 
-        var avg = connection.ExecuteScalar<Double>("SELECT  ROUND (AVG (price), 2)  FROM Products;");
+        var average = connection.ExecuteScalar<Double>("SELECT  ROUND (AVG (price), 2)  FROM Products;");
 
-        return avg;
-
+        return average;
     }
-
 
     public bool ExistsById(int id)
     {
@@ -105,6 +103,5 @@ class ProductRepository
         var count = connection.ExecuteScalar<Boolean>("SELECT COUNT(Id) FROM Products  WHERE id=@Id", new { Id = id });
 
         return count;
-
     }
 }
